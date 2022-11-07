@@ -6,7 +6,7 @@ contract CAPTCHA {
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
 
-    event PassedCaptcha(address indexed user);
+    event Verified(address indexed user);
 
     /*//////////////////////////////////////////////////////////////
                           VERIFICATION STORAGE
@@ -47,7 +47,7 @@ contract CAPTCHA {
 
         hasPassedCAPTCHA[msg.sender] = true;
 
-        emit PassedCaptcha(msg.sender);
+        emit Verified(msg.sender);
     }
 
     /*//////////////////////////////////////////////////////////////
