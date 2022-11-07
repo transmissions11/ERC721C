@@ -20,8 +20,8 @@ abstract contract ERC721C is ERC721 {
                               CAPTCHA LOGIC
     //////////////////////////////////////////////////////////////*/
 
-    modifier mustPassCAPTCHA() {
-        require(captcha.hasPassedCAPTCHA(msg.sender), "MUST_PASS_CAPTCHA");
+    modifier mustPassCAPTCHA(address user) {
+        require(captcha.hasPassedCAPTCHA(user), "MUST_PASS_CAPTCHA");
 
         _;
     }
@@ -30,15 +30,23 @@ abstract contract ERC721C is ERC721 {
                               ERC721 LOGIC
     //////////////////////////////////////////////////////////////*/
 
-    function approve(address spender, uint256 id) public virtual override mustPassCAPTCHA {
+    function approve(address spender, uint256 id) public virtual override mustPassCAPTCHA(msg.sender) {
         super.approve(spender, id);
     }
 
-    function setApprovalForAll(address operator, bool approved) public virtual override mustPassCAPTCHA {
+    function setApprovalForAll(address operator, bool approved) public virtual override mustPassCAPTCHA(msg.sender) {
         super.setApprovalForAll(operator, approved);
     }
 
-    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA {
+    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA(from) {
         super.transferFrom(from, to, id);
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                          INTERNAL ERC721 LOGIC
+    //////////////////////////////////////////////////////////////*/
+
+    function _mint(address to, uint256 id) internal virtual override mustPassCAPTCHA(to) {
+        super._mint(to, id);
     }
 }
