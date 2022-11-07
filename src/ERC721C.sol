@@ -15,6 +15,10 @@ abstract contract ERC721C is ERC721 {
 
     CAPTCHA internal immutable captcha;
 
+    /*//////////////////////////////////////////////////////////////
+                               CONSTRUCTOR
+    //////////////////////////////////////////////////////////////*/
+
     constructor(string memory _name, string memory _symbol, CAPTCHA _captcha) ERC721(_name, _symbol) {
         captcha = _captcha;
     }
