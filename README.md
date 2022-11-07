@@ -1,6 +1,6 @@
-# foundry-template • [![CI](https://github.com/transmissions11/foundry-template/actions/workflows/tests.yml/badge.svg)](https://github.com/transmissions11/foundry-template/actions/workflows/tests.yml)
+# ERC721 
 
-Streamlined template for getting started with Foundry and Solmate.
+CAPTCHAs for NFTs.
 
 ## Contributing
 
