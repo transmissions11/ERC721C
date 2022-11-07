@@ -43,15 +43,7 @@ abstract contract ERC721C is ERC721 {
                               ERC721 LOGIC
     //////////////////////////////////////////////////////////////*/
 
-    function approve(address spender, uint256 id) public virtual override mustPassCAPTCHA(msg.sender) {
-        super.approve(spender, id);
-    }
-
-    function setApprovalForAll(address operator, bool approved) public virtual override mustPassCAPTCHA(msg.sender) {
-        super.setApprovalForAll(operator, approved);
-    }
-
-    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA(msg.sender) {
+    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA(to) {
         super.transferFrom(from, to, id);
     }
 
