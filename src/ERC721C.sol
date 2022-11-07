@@ -10,12 +10,6 @@ import {CAPTCHA} from "./CAPTCHA.sol";
 /// @notice ERC721 that blocks non whitelisted contract interactions.
 abstract contract ERC721C is ERC721 {
     /*//////////////////////////////////////////////////////////////
-                            WHITELIST STORAGE
-    //////////////////////////////////////////////////////////////*/
-
-    mapping(address => bool) public isWhitelisted;
-
-    /*//////////////////////////////////////////////////////////////
                              CAPTCHA STORAGE
     //////////////////////////////////////////////////////////////*/
 
@@ -26,11 +20,17 @@ abstract contract ERC721C is ERC721 {
     }
 
     /*//////////////////////////////////////////////////////////////
+                             WHITELIST LOGIC
+    //////////////////////////////////////////////////////////////*/
+
+    function isWhitelisted(address) internal virtual returns (bool);
+
+    /*//////////////////////////////////////////////////////////////
                               CAPTCHA LOGIC
     //////////////////////////////////////////////////////////////*/
 
     modifier mustPassCAPTCHA(address user) {
-        require(captcha.hasPassedCAPTCHA(user) || isWhitelisted[user], "MUST_PASS_CAPTCHA");
+        require(captcha.hasPassedCAPTCHA(user) || isWhitelisted(user), "MUST_PASS_CAPTCHA");
 
         _;
     }
@@ -57,17 +57,5 @@ abstract contract ERC721C is ERC721 {
 
     function _mint(address to, uint256 id) internal virtual override mustPassCAPTCHA(to) {
         super._mint(to, id);
-    }
-
-    /*//////////////////////////////////////////////////////////////
-                        INTERNAL WHITELIST LOGIC
-    //////////////////////////////////////////////////////////////*/
-
-    function _whitelist(address user) internal virtual {
-        isWhitelisted[user] = true;
-    }
-
-    function _blacklist(address user) internal virtual {
-        isWhitelisted[user] = false;
     }
 }
