@@ -46,7 +46,7 @@ contract CAPTCHA {
             s
         );
 
-        require(recoveredAddress != address(0) && recoveredAddress == msg.sender, "INVALID_SIGNER");
+        require(recoveredAddress == msg.sender, "INVALID_SIGNER");
 
         hasPassedCAPTCHA[msg.sender] = true;
 
