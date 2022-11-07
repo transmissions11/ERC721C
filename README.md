@@ -10,7 +10,7 @@ You will need a copy of [Foundry](https://github.com/foundry-rs/foundry) install
 
 ```sh
 git clone https://github.com/transmissions11/ERC721C.git
-cd foundry-template
+cd ERC721C
 forge install
 ```
 
