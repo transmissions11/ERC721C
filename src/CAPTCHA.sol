@@ -9,10 +9,10 @@ contract CAPTCHA {
     event PassedCaptcha(address indexed user);
 
     /*//////////////////////////////////////////////////////////////
-                            SENTIENT STORAGE
+                          VERIFICATION STORAGE
     //////////////////////////////////////////////////////////////*/
 
-    mapping(address => bool) isSentient;
+    mapping(address => bool) public hasPassedCAPTCHA;
 
     /*//////////////////////////////////////////////////////////////
                              EIP-712 STORAGE
@@ -32,14 +32,12 @@ contract CAPTCHA {
     }
 
     /*//////////////////////////////////////////////////////////////
-                        SENTIENT PROVENANCE LOGIC
+                           VERIFICATION LOGIC
     //////////////////////////////////////////////////////////////*/
 
-    function iAmSentient(uint8 v, bytes32 r, bytes32 s) public virtual {
+    function verify(uint8 v, bytes32 r, bytes32 s) public virtual {
         address recoveredAddress = ecrecover(
-            keccak256(
-                abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR(), keccak256(abi.encode(keccak256("IAmSentient()"))))
-            ),
+            keccak256(abi.encodePacked("\x19\x01", DOMAIN_SEPARATOR(), keccak256(abi.encode(keccak256("CAPTCHA()"))))),
             v,
             r,
             s
@@ -47,7 +45,7 @@ contract CAPTCHA {
 
         require(recoveredAddress != address(0) && recoveredAddress == msg.sender, "INVALID_SIGNER");
 
-        isSentient[msg.sender] = true;
+        hasPassedCAPTCHA[msg.sender] = true;
 
         emit PassedCaptcha(msg.sender);
     }
