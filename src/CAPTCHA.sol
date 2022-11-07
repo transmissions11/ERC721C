@@ -31,6 +31,10 @@ contract CAPTCHA {
         INITIAL_DOMAIN_SEPARATOR = computeDomainSeparator();
     }
 
+    /*//////////////////////////////////////////////////////////////
+                        SENTIENT PROVENANCE LOGIC
+    //////////////////////////////////////////////////////////////*/
+
     function iAmSentient(uint8 v, bytes32 r, bytes32 s) public virtual {
         address recoveredAddress = ecrecover(
             keccak256(
