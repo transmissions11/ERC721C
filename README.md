@@ -1,6 +1,6 @@
-# foundry-template • [![CI](https://github.com/transmissions11/foundry-template/actions/workflows/tests.yml/badge.svg)](https://github.com/transmissions11/foundry-template/actions/workflows/tests.yml)
+# ERC721C
 
-Streamlined template for getting started with Foundry and Solmate.
+CAPTCHAs for NFTs.
 
 ## Contributing
 
@@ -9,7 +9,7 @@ You will need a copy of [Foundry](https://github.com/foundry-rs/foundry) install
 ### Setup
 
 ```sh
-git clone https://github.com/transmissions11/foundry-template.git
+git clone https://github.com/transmissions11/ERC721C.git
 cd foundry-template
 forge install
 ```
