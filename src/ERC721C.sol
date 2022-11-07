@@ -5,6 +5,9 @@ import {ERC721} from "solmate/tokens/ERC721.sol";
 
 import {CAPTCHA} from "./CAPTCHA.sol";
 
+/// @title ERC721C
+/// @author transmissions11 <t11s@paradigm.xyz>
+/// @notice ERC721 that blocks non whitelisted contract interactions.
 abstract contract ERC721C is ERC721 {
     /*//////////////////////////////////////////////////////////////
                             WHITELIST STORAGE
@@ -44,7 +47,7 @@ abstract contract ERC721C is ERC721 {
         super.setApprovalForAll(operator, approved);
     }
 
-    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA(from) {
+    function transferFrom(address from, address to, uint256 id) public virtual override mustPassCAPTCHA(msg.sender) {
         super.transferFrom(from, to, id);
     }
 

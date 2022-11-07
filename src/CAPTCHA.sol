@@ -1,6 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.15;
 
+/// @title CAPTCHA
+/// @author transmissions11 <t11s@paradigm.xyz>
+/// @notice Completely Automated Public Turing
+/// Test to Tell Contracts and Humans Apart.
 contract CAPTCHA {
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
