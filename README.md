@@ -9,7 +9,7 @@ You will need a copy of [Foundry](https://github.com/foundry-rs/foundry) install
 ### Setup
 
 ```sh
-git clone https://github.com/transmissions11/foundry-template.git
+git clone https://github.com/transmissions11/ERC721C.git
 cd foundry-template
 forge install
 ```
